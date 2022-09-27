@@ -28,6 +28,30 @@ class CarListTest {
     }
 
     @Test
+    void insertIntoMiddle() {
+        Car bmw = new Car("BMW", 88);
+        carList.add(bmw, 50);
+        assertEquals(carList.get(50), bmw);
+        assertEquals(carList.size(), 101);
+    }
+
+    @Test
+    void insertIntoFirstPosition() {
+        Car bmw = new Car("BMW", 88);
+        carList.add(bmw, 0);
+        assertEquals(carList.get(0), bmw);
+        assertEquals(carList.size(), 101);
+    }
+
+    @Test
+    void insertIntoLastPosition() {
+        Car bmw = new Car("BMW", 88);
+        carList.add(bmw, 100);
+        assertEquals(carList.get(100), bmw);
+        assertEquals(carList.size(), 101);
+    }
+
+    @Test
     void whenElementRemovedByIndexThenSizeMustDecreased() {
         assertTrue(carList.removeAt(24));
         assertEquals(carList.size(), 99);
@@ -44,7 +68,7 @@ class CarListTest {
     }
 
     @Test
-    void whenNonExistantElementRemovedThenReturnFalse() {
+    void whenNonExistentElementRemovedThenReturnFalse() {
         Car newCar = new Car("Maserati", 11);
         assertEquals(carList.size(), 100);
         assertFalse(carList.remove(newCar));

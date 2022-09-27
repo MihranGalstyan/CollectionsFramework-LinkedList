@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -21,6 +20,22 @@ public class CarArrayList implements CarList {
             increase();
         }
         array[size] = car;
+        size++;
+    }
+
+    @Override
+    public void add(final Car car, int index) {
+        if (index == size) {
+            add(car);
+            return;
+        }
+        checkIndex(index);
+        increase();
+
+        for (int i = size; i > index; i--) {
+            array[i] = array[i - 1];
+        }
+        array[index] = car;
         size++;
     }
 
