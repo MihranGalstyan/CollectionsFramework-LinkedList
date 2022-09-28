@@ -7,12 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by Mihran Galstyan
  * All rights reserved
  */
+
 class CarListTest {
     private CarList carList;
 
     @BeforeEach
     void setUp() {
-        carList = new CarArrayList();
+        carList = new CarLinkedList();
         for (int i = 0; i < 100; i++) {
             carList.add(new Car("Brand " + i, i));
         }
@@ -20,6 +21,7 @@ class CarListTest {
 
     @Test
     void get() {
+        assertEquals(carList.get(50).getBrand(),"Brand 50");
     }
 
     @Test
@@ -85,9 +87,7 @@ class CarListTest {
     @Test
     void whenIndexIsOutOfBoundsThenExceptionIsThrown() {
         assertThrows(IndexOutOfBoundsException.class,
-                () -> {
-                    carList.get(100);
-                });
+                () -> carList.get(100));
     }
 
     @Test

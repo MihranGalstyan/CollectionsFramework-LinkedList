@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * Created by Mihran Galstyan
  * All rights reserved
@@ -19,5 +21,16 @@ public class Car {
         return number;
     }
 
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        final Car car = (Car) object;
+        return number == ((Car) object).number && Objects.equals(brand, car.brand);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, number);
+    }
 }
